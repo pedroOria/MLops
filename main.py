@@ -11,7 +11,7 @@ async def read_root():
 
 # funcion que retorna la cantidad de peliculas por mes
 @app.get('/cantidad_filmaciones_mes/{mes}')
-async def cantidad_filmaciones_mes(mes):
+async def cantidad_filmaciones_mes(mes:str):
     a = pd.read_csv('pelis_mes.csv') 
     # Convertir el nombre del mes a minúsculas
     mes = mes.lower()
@@ -51,7 +51,7 @@ async def cantidad_filmaciones_mes(mes):
 
 # Funcion que retorna la cantidad de peliculas por dia
 @app.get('/cantidad_filmaciones_dia/{dia}')
-async def cantidad_filmaciones_dia(dia):
+async def cantidad_filmaciones_dia(dia:str):
     df = pd.read_csv('pelis_mes.csv')  
     # Convertir el día a minúsculas
     dia = dia.lower()
@@ -85,11 +85,11 @@ async def cantidad_filmaciones_dia(dia):
     return {'dia':dia, 'cantidad':respuesta}
 
 # Funcion que retorna el año de estreno y el score
-@app.get('/score_titulo/{titulo_de_la_filmacion}')
-async def score_titulo(titulo_de_la_filmación):
+@app.get('/score_titulo/{titulo}')
+async def score_titulo(titulo:str):
     df = pd.read_csv('score.csv')
-    titulo_de_la_filmación =titulo_de_la_filmación.lower()
-    df_title = df[df['title'].str.lower()== titulo_de_la_filmación]
+    titulo =titulo.lower()
+    df_title = df[df['title'].str.lower()== titulo]
     
     # obtener el año de estreno
     anio = df_title['release_year'].values[0]
@@ -97,14 +97,14 @@ async def score_titulo(titulo_de_la_filmación):
     # obtener la valoracion de la pelicula
     score = df_title['popularity'].values[0]
     
-    return f'La película {titulo_de_la_filmación} fue estreneada en el año {anio} con un score/popularidad de {score}'
+    return {'titulo':titulo, 'anio':anio,'popularidad':score}
 
 # funcion que retorna el año los votos y el promedio de votos
-@app.get('/votos_titulo/{titulo_de_la_filmacion}')
-async def votos_titulo(titulo_de_la_filmación):
+@app.get('/votos_titulo/{titulo}')
+async def votos_titulo(titulo:str):
     df = pd.read_csv('votos.csv')
-    titulo_de_la_filmación =titulo_de_la_filmación.lower()
-    df_title = df[df['title'].str.lower()== titulo_de_la_filmación]
+    titulo =titulo.lower()
+    df_title = df[df['title'].str.lower()== titulo]
     
     # obtener el año de estreno
     anio = df_title['release_year'].values[0]
@@ -115,11 +115,11 @@ async def votos_titulo(titulo_de_la_filmación):
     # obtener el promedio de votos
     mean_votos = df_title['vote_average'].values[0]
 
-    return f'La película {titulo_de_la_filmación} fue estrenada en el año {anio}. La misma cuenta con un total de {num_votos} valoraciones, con un promedio de {mean_votos}'
+    return {'titulo':titulo,'anio':anio,'voto_total':num_votos,'voto_promedio':mean_votos}
 
 # funcion que retorna informacion del actor
 @app.get('/get_actor/{nombre_actor}')
-async def get_actor(nombre_actor):
+async def get_actor(nombre_actor:str):
     df = pd.read_csv('actores.csv')
     nombre_actor = nombre_actor.lower()
     actor_df = df[df['cast'].str.lower()==nombre_actor]
@@ -134,11 +134,11 @@ async def get_actor(nombre_actor):
 
     promedio = actor_df['return'].mean()
 
-    return f'El actor {nombre_actor} ha participado de {cantidad_peliculas} cantidad de filmaciones, el mismo ha conseguido un retorno de {retorno} con un promedio de {promedio} por filmación'
+    return {'actor':nombre_actor,'cantidad_filmaciones':cantidad_peliculas,'retorno_total':retorno,'retorno_promedio':promedio}
 
 # funcion que retorna la informacion del director
 @app.get('/get_director/{nombre_director}')
-async def get_director(nombre_director):
+async def get_director(nombre_director:str):
     df = pd.read_csv('director.csv')
     nombre_director = nombre_director.lower()
     director_df = df[df['crew'].str.lower()==nombre_director]
@@ -151,22 +151,22 @@ async def get_director(nombre_director):
     for _, row in director_df.iterrows():
         pelicula = {
             'titulo': row['title'],
-            'fecha_lanzamiento': row['release_date'],
-            'retorno_individual': row['return'],
-            'costo': row['budget'],
-            'ganancia': row['revenue']
+            'anio': row['release_date'],
+            'retorno_pelicula': row['return'],
+            'budget_pelicula': row['budget'],
+            'revenue_pelicula': row['revenue']
         }
         peliculas.append(pelicula)
 
     return {
-        'nombre_director': nombre_director,
-        'retorno_total': retorno,      
+        'director': nombre_director,
+        'retorno_total_director': retorno,      
         'peliculas': peliculas
     }
 
 # funcion de Machine Learnig para recomendarte peliculas
 #@app.get('/recomendacion/{titulo}')
-#async def get_recomendations(title):
+#async def get_recomendations(title:str):
     #i = pd.read_csv('recomendacion.csv')
     #tfidf = TfidfVectorizer(stop_words='english')
     #i['overview'] = i["overview"].fillna("")
