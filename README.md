@@ -30,19 +30,19 @@ Estas son algunas de las consultas disponibles en la API:
 
 ### Paso 1:
 Prepara el entorno de trabajo.
-- Para realizar el proyecto se necesito crear un repositorio local para mas adelante enlazarlo a nuestro repositorio de github, luego en la misma carpeta del proyecto levantaremos un entorno virtual asi podremos trabajar en el de forma mas profesional, ademas nos servira para mas adelante hacer el desployment. Muy importante crear tu .gitignore y tu archivo requirements.txt estos seran indispensables para el desployment del proyecto.
+- Crea un repositorio local y enlázalo con tu repositorio de GitHub. Configura un entorno virtual en la carpeta del proyecto para trabajar de manera más profesional y facilitar el despliegue posterior. No olvides crear un archivo `.gitignore` y `requirements.txt`, ya que son indispensables para el despliegue del proyecto.
 
 ### Paso 2:
 Realizar el ETL del archivo `movies_dataset.csv` y el archivo `credits.csv`.
-- Tienes que desanidar las columnas para acceder al dato que deseas en este caso desanide todas las columnas, pero despues de acabar mi proyecto me doy cuenta que para hacer las consultas y hacer el sistema de recomendaciones, solo bastaba con desanidar, la columna de cast y la de crew. Despues seguiria transformar los datos para trabajar mas adelante con ellos.
+- Desanida las columnas de los archivos para acceder a los datos deseados. En este caso, se desanidaron todas las columnas, pero al final del proyecto se descubrió que solo era necesario desanidar las columnas cast y crew. Realiza las transformaciones necesarias en los datos para facilitar su manejo posterior.
 
 ### Paso 3:
 Realizar las funciones que serian las consultas para la api.
-- Para hacer las funciones creamos el archivo `movies_eda.csv` que contiene todas las transformaciones y se usara para extraer los datos deseados, en las primeras 2 consultas tendremos que hacer un mapeo para asi extraer los meses y dias de la columna `release_date`, en la tercera y cuarta consulta es mas accesible, solo tendremos que hacer un filtro de la columna title, para que se refleje en las demas columnas, en las dos ultimas usaremos los archivos `direcotr.csv` y `actores.csv` de igual manera solo hacemos un filtro del name y obtendremos los datos deseados en las demas columnas.
+- Crea el archivo `movies_eda.csv`, que contiene todas las transformaciones y se utilizará para extraer los datos deseados. En las primeras dos consultas, se realiza un mapeo para extraer los meses y días de la columna release_date. En las consultas siguientes, se realiza un filtro en la columna title para obtener los datos correspondientes en las demás columnas. Para las últimas dos consultas, se utilizan los archivos `directores.csv` y `actores.csv`, donde también se realiza un filtro por nombre para obtener los datos deseados en las demás columnas.
 
 ### Paso 4:
 Realizar el desployment en Render.
-- Para desplegar el proyecto es necesario haber creado tus archivos .gitignore y requirements.txt, ya que con estos archivos render, podra levantar tu proyecto y generarte un link para que lo puedas compartir y mas personas puedan ver tu proyecto ya no de forma local sino desde sus ordenadores. Este procedimiento es muy sencillo creas tu cuenta en "render.com" luego seleccionas la opcion de crear un web service y pegas el link de tu repositorio de github, completas los parametros para desplegar tu proyecto y le das en crear.
+- Para desplegar el proyecto, asegúrate de haber creado los archivos `.gitignore` y `requirements.txt`. Render te permitirá levantar tu proyecto y generar un enlace para compartirlo con otras personas. Regístrate en "render.com", selecciona la opción de crear un servicio web y pega el enlace de tu repositorio de GitHub. Completa los parámetros necesarios y haz clic en crear para desplegar tu proyecto.
 
 ## Bibliografía
 
@@ -53,3 +53,5 @@ Realizar el desployment en Render.
 - https://platzi.com/clases/4261-python-pip/55131-requirementstxt/ (si tienes platzi me guie de cursos como pip y entornos virtuales)
 
 
+!(https://avatars.githubusercontent.com/u/117546891?s=400&u=6a6327d1cbf13545fd79dbb73d8193b5b01e5548&v=4)
+[Pedro Oria](https://github.com/pedroOria)
