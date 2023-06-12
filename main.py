@@ -12,7 +12,7 @@ async def read_root():
 # funcion que retorna la cantidad de peliculas por mes
 @app.get('/cantidad_filmaciones_mes/{mes}')
 async def cantidad_filmaciones_mes(mes:str):
-    a = pd.read_csv('pelis_mes.csv') 
+    a = pd.read_csv('movies_eda.csv') 
     # Convertir el nombre del mes a minúsculas
     mes = mes.lower()
     
@@ -52,7 +52,7 @@ async def cantidad_filmaciones_mes(mes:str):
 # Funcion que retorna la cantidad de peliculas por dia
 @app.get('/cantidad_filmaciones_dia/{dia}')
 async def cantidad_filmaciones_dia(dia:str):
-    df = pd.read_csv('pelis_mes.csv')  
+    df = pd.read_csv('movies_eda.csv')  
     # Convertir el día a minúsculas
     dia = dia.lower()
     
@@ -87,33 +87,33 @@ async def cantidad_filmaciones_dia(dia:str):
 # Funcion que retorna el año de estreno y el score
 @app.get('/score_titulo/{titulo}')
 async def score_titulo(titulo:str):
-    df = pd.read_csv('score.csv')
-    titulo =titulo.lower()
+    df = pd.read_csv('movies_eda.csv')
+    titulo = titulo.lower()
     df_title = df[df['title'].str.lower()== titulo]
     
     # obtener el año de estreno
-    anio = df_title['release_year'].values[0]
+    anio = df_title['release_year'].to_list()[0]
 
     # obtener la valoracion de la pelicula
-    score = df_title['popularity'].values[0]
+    score = df_title['popularity'].to_list()[0]
     
     return {'titulo':titulo, 'anio':anio,'popularidad':score}
 
 # funcion que retorna el año los votos y el promedio de votos
 @app.get('/votos_titulo/{titulo}')
 async def votos_titulo(titulo:str):
-    df = pd.read_csv('votos.csv')
+    df = pd.read_csv('movies_eda.csv')
     titulo =titulo.lower()
     df_title = df[df['title'].str.lower()== titulo]
     
     # obtener el año de estreno
-    anio = df_title['release_year'].values[0]
+    anio = df_title['release_year'].to_list()[0]
 
     # obtener la cantidad de votos
-    num_votos = df_title['vote_count'].values[0]
+    num_votos = df_title['vote_count'].to_list()[0]
 
     # obtener el promedio de votos
-    mean_votos = df_title['vote_average'].values[0]
+    mean_votos = df_title['vote_average'].to_list()[0]
 
     return {'titulo':titulo,'anio':anio,'voto_total':num_votos,'voto_promedio':mean_votos}
 

@@ -28,14 +28,27 @@ Estas son algunas de las consultas disponibles en la API:
 
 ## Estructura del proyecto
 
-Para realizar este proyecto, primero se realizaron la ingesta y la normalización de los datos, lo cual se puede ver en el archivo `ETL.ipynb`. Luego, se relacionan en los datasets resultantes (`actores.csv`,`director.csv`,`pelis_mes.csv`,`recomendacion.csv`,`score.csv`,`votos.csv`) con el archivo `main.py` para realizar las consultas con FastAPI y adicionalmente el archivo `requirements.txt` donde guardo todas las librerias necesarias para levantar el proyecto. Por último, se hara el desployment de la API con Render.
+### Paso 1:
+Prepara el entorno de trabajo.
+- Para realizar el proyecto se necesito crear un repositorio local para mas adelante enlazarlo a nuestro repositorio de github, luego en la misma carpeta del proyecto levantaremos un entorno virtual asi podremos trabajar en el de forma mas profesional, ademas nos servira para mas adelante hacer el desployment. Muy importante crear tu .gitignore y tu archivo requirements.txt estos seran indispensables para el desployment del proyecto.
+
+### Paso 2:
+Realizar el ETL del archivo `movies_dataset.csv` y el archivo `credits.csv`.
+- Tienes que desanidar las columnas para acceder al dato que deseas en este caso desanide todas las columnas, pero despues de acabar mi proyecto me doy cuenta que para hacer las consultas y hacer el sistema de recomendaciones, solo bastaba con desanidar, la columna de cast y la de crew. Despues seguiria transformar los datos para trabajar mas adelante con ellos.
+
+### Paso 3:
+Realizar las funciones que serian las consultas para la api.
+- Para hacer las funciones creamos el archivo `movies_eda.csv` que contiene todas las transformaciones y se usara para extraer los datos deseados, en las primeras 2 consultas tendremos que hacer un mapeo para asi extraer los meses y dias de la columna `release_date`, en la tercera y cuarta consulta es mas accesible, solo tendremos que hacer un filtro de la columna title, para que se refleje en las demas columnas, en las dos ultimas usaremos los archivos `direcotr.csv` y `actores.csv` de igual manera solo hacemos un filtro del name y obtendremos los datos deseados en las demas columnas.
+
+### Paso 4:
+Realizar el desployment en Render.
+- Para desplegar el proyecto es necesario haber creado tus archivos .gitignore y requirements.txt, ya que con estos archivos render, podra levantar tu proyecto y generarte un link para que lo puedas compartir y mas personas puedan ver tu proyecto ya no de forma local sino desde sus ordenadores. Este procedimiento es muy sencillo creas tu cuenta en "render.com" luego seleccionas la opcion de crear un web service y pegas el link de tu repositorio de github, completas los parametros para desplegar tu proyecto y le das en crear.
 
 ## Bibliografía
 
 - https://www.youtube.com/watch?v=GWFC2_9_iVk&t=1460s
 - https://nodd3r.com/blog/guia-de-como-hacer-un-proyecto-de-ciencia-de-datos-para-que-destaque-de-forma-eficiente
 - https://www.youtube.com/watch?v=J0y2tjBz2Ao&t=10s
-- https://hub.docker.com/r/tiangolo/uvicorn-gunicorn-fastapi/
 - https://www.youtube.com/watch?v=BvvH3ohis6E
 - https://platzi.com/clases/4261-python-pip/55131-requirementstxt/ (si tienes platzi me guie de cursos como pip y entornos virtuales)
 
