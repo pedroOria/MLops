@@ -53,5 +53,5 @@ Realizar el desployment en Render.
 - https://platzi.com/clases/4261-python-pip/55131-requirementstxt/ (si tienes platzi me guie de cursos como pip y entornos virtuales)
 
 
-!(https://avatars.githubusercontent.com/u/117546891?s=400&u=6a6327d1cbf13545fd79dbb73d8193b5b01e5548&v=4)
+![Pedro Oria](https://avatars.githubusercontent.com/u/117546891?s=400&u=6a6327d1cbf13545fd79dbb73d8193b5b01e5548&v=4)
 [Pedro Oria](https://github.com/pedroOria)
