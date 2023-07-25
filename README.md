@@ -42,7 +42,7 @@ Realizar las funciones que serian las consultas para la api.
 
 ### Paso 4:
 Realizar el desployment en Render.
-- Para desplegar el proyecto, asegúrate de haber creado los archivos `.gitignore` y `requirements.txt`. Render te permitirá levantar tu proyecto y generar un enlace para compartirlo con otras personas. Regístrate en "render.com", selecciona la opción de crear un servicio web y pega el enlace de tu repositorio de GitHub. Completa los parámetros necesarios y haz clic en crear para desplegar tu proyecto.
+- Para desplegar el proyecto, asegúrate de haber creado los archivos `.gitignore` y `requirements.txt`. Render te permitirá levantar tu proyecto y generar un enlace para compartirlo con otras personas. Regístrate en "render.com", selecciona la opción de crear un servicio web y pega el enlace de tu repositorio de GitHub. Completa los parámetros necesarios y haz clic en crear para desplegar tu proyecto.**[Deployment](https://mlops-service-desployment.onrender.com/docs)**
 
 ## Bibliografía
 
